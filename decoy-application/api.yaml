@@ -1,0 +1,47 @@
+# kubernetes-fastapi LoadBalancer Service
+# Enables the pods in a deployment to be accessible from outside the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: price-api-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: price-api
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 80
+# Defines the deployment of the app running in a pod on any worker node
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: price-api
+  labels:
+    app: price-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: price-api
+  template:
+    metadata:
+      annotations: container.apparmor.security.beta.kubernetes.io/hello: runtime/default
+      labels:
+        app: price-api
+    spec:
+      # #not running as root
+      # securityContext:
+      #   runAsUser: 1000
+      containers:
+        - name: price-api
+          image: andalouse/cryptoapp:v1
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+          resources:
+            # You must specify requests for CPU to autoscale
+            # based on CPU utilization
+            requests:
+              cpu: "250m"
