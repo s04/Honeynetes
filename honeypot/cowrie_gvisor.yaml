@@ -1,29 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cowrie-app
+  name: cowrie-lb
   labels:
     app: cowrie-app
 spec:
-  ports:
-    - port: 2
   selector:
     app: cowrie-app
     tier: honeypot
+  ports:
+    - protocol: "TCP"
+      port: 22
+      targetPort: 2222
   type: LoadBalancer
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: wp-pv-claim
-#   labels:
-#     app: cowrie-app
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-claim
+  labels:
+    app: cowrie-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,6 +34,7 @@ metadata:
   labels:
     app: cowrie-app
 spec:
+  replicas: 4
   selector:
     matchLabels:
       app: cowrie-app
@@ -44,7 +47,7 @@ spec:
         app: cowrie-app
         tier: honeypot
     spec:
-      runtimeClassName: gvisor   # ADD THIS LINE
+      # runtimeClassName: gvisor   # ADD THIS LINE
       containers:
       - image: cowrie/cowrie
         name: cowrie-app

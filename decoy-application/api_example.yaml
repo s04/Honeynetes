@@ -14,6 +14,7 @@ spec:
   type: LoadBalancer
 
 ---
+# kf-api Deployment
 # Defines the deployment of the app running in a pod on any worker node
 apiVersion: apps/v1
 kind: Deployment
@@ -28,7 +29,6 @@ spec:
       app: price-api
   template:
     metadata:
-      annotations: container.apparmor.security.beta.kubernetes.io/hello: runtime/default
       labels:
         app: price-api
     spec:

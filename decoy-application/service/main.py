@@ -22,8 +22,9 @@ async def read_item(timeframe: str, fsym: str = "ETH", tsym: str = "USDT", start
 
     print(filename)
     df = pd.read_csv(filename)
+    return df.head()
 
-
+    
     if hours:
         print("hours")
         to = start - hours * 3600000
