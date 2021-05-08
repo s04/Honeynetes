@@ -6,28 +6,25 @@ This is the repository for a
 
 These are the yaml files, scripts and code for my Final Year Project / Bachelors dissertation at Trinity College Dublin and will no longer be maintained beyond: May 2021.
 
-Honeypots are intentionally exposed networks, systems or applications. One can study the attacks made on honeypots in order to get real time data about what exploits are being used.
+Honeypots are intentionally exposed networks, systems or applications. One can study the attacks made on honeypots in order to get real time data about what exploits are being used  and how to defend against them.
 
-Features:
+![honey-cluster diagram](https://github.com/s04/Honeynetes/blob/master/images/honey-cluster-diagram.png)
 
-  - gVisor Kernel Isolation of each Honeypot instance in a Honey-cluster
-  - Cowrie as base docker image [Cowrie](https://github.com/cowrie/cowrie)
-  - works in Google Kubernetes Engine (GKE) | [Documentation](https://cloud.google.com/kubernetes-engine) [Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) 
-  - run dozens of self-healing honeypots on a single VPS/Dedicated Instance
-  - deploy into any existing cluster
-  - incl. simple decoy Cryptocurrency Price Api [FastApi Homepage](https://fastapi.tiangolo.com/)
-  - 
+**Features:**
+  1.  gVisor Kernel Isolation | [gvsior.dev](https://gvisor.dev/)
+  2. High Functionality Honeypot | [Cowrie Github](https://github.com/cowrie/cowrie) + [Cowrie on Docker Hub](https://github.com/cowrie/cowrie)
+  3. works in Google Kubernetes Engine (GKE) | [Documentation](https://cloud.google.com/kubernetes-engine) + [Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) 
+  4. incl. simple decoy Cryptocurrency Price Api | [Python FastApi](https://fastapi.tiangolo.com/)
 
 To Do:
 
+- Networking Isolation and Secrets management
 - Auto-Scaling
 - ELK / Greylog / Graphana
 - Istio (or any Service Mesh)
-- Alpine Linux - Destruct Images after 1h
+- Alpine Linux (+logging) instead of Cowrie
+- Self-Destruct Images after 1h (crontab)
 - eBPF Cilium https://github.com/cilium/cilium
-
-
- The idea is that one lets attackers a cybersecurity 
 
 # Deploying 2 Nodes (1 decoy, 1 honeypot)
 
