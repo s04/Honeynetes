@@ -1,6 +1,6 @@
 # Honey-clusters (/ˈklʌstə ˈhʌni/)
 
-This is the repository for a 
+**Please use honeypots and honey-clusters within authorized environments and networks. I am not responsible for any consequences or billing due to this code.**
 
 ## **Sandboxing untrusted honeybot workload in Kubernetes**
 
@@ -38,5 +38,5 @@ Alternatives include:
 
 In this example we will be running one node with the docker container runtime (soon to be deprecated but this should work on any runtime) and the other one will be using the cos_containerd image which is required for gVisor nodes on GKE.
 
-Please use honeypots and honey-clusters within authorized environments and networks. I am not responsible for any consequences or billing due to this code.
+
 
