@@ -16,7 +16,7 @@ Honeypots are intentionally exposed networks, systems or applications. One can s
   3. works in Google Kubernetes Engine (GKE) | [Documentation](https://cloud.google.com/kubernetes-engine) + [Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) 
   4. incl. simple decoy Cryptocurrency Price Api | [Python FastApi](https://fastapi.tiangolo.com/)
 
-To Do:
+**To Do:**
 
 - Networking Isolation and Secrets management
 - Auto-Scaling
